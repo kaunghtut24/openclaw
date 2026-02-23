@@ -110,6 +110,28 @@ pnpm gateway:watch
 
 Note: `pnpm openclaw ...` runs TypeScript directly (via `tsx`). `pnpm build` produces `dist/` for running via Node / the packaged `openclaw` binary.
 
+## Downstream sync (fork workflow)
+
+If you track `openclaw/openclaw` as upstream (`origin`) and keep your own fork as `fork`, use this one command to sync your local and fork `main` from upstream:
+
+```bash
+pnpm sync:downstream
+```
+
+Preview the commands without changing anything:
+
+```bash
+pnpm sync:downstream -- --dry-run
+```
+
+The sync command is intentionally blocked when the working tree is dirty. If needed:
+
+```bash
+git stash -u
+pnpm sync:downstream
+git stash pop
+```
+
 ## Security defaults (DM access)
 
 OpenClaw connects to real messaging surfaces. Treat inbound DMs as **untrusted input**.
